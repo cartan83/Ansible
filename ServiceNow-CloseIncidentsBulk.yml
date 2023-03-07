@@ -1,0 +1,18 @@
+- hosts: localhost
+  tasks:
+    - name: Close incident
+      servicenow.itsm.incident:
+        instance:
+          host: https://redhat.service-now.com
+          username: "{{ cmdb_sa_user }}"
+          password: "{{ cmdb_sa_pass }}"
+        state: closed
+        number: "{{ item }}"
+        close_code: "Solved (Permanently)"
+        close_notes: "{{ ClosingNotes }}"
+        other:
+          assigned_to: "{{ RH_UserName }}"
+          customer_update: "{{ ClosingNotes }}"
+          u_ticket_type: Incident
+      loop:
+        "{{ Tickets.split('\n') }}"
