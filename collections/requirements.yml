@@ -1,0 +1,5 @@
+#This folder called "collections" must be at the root or the repo and cannot be nested
+---
+collections:
+- name: servicenow.itsm
+  source: https://galaxy.ansible.com
