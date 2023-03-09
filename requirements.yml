@@ -1,3 +1,0 @@
-collections:
-- name: servicenow.itsm
-  source: https://galaxy.ansible.com
