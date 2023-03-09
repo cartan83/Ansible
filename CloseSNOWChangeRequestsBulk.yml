@@ -1,0 +1,20 @@
+#Close SNOW Change Requests in Bulk
+---
+- hosts: localhost
+  tasks:
+    - name: Create change request
+      servicenow.itsm.change_request:
+        instance:
+          host: https://redhat.service-now.com
+          username: "{{ cmdb_sa_user }}"
+          password: "{{ cmdb_sa_pass }}"
+        state: closed
+        number: "{{ item }}"
+        close_code: "successful"
+        close_notes: "{{ ClosingNotes }}"
+        other:
+          assignment_group: "{{ assignment_group }}"
+          close_notes: "{{ ClosingNotes }}"
+      loop: |-
+        {{ Tickets.split('
+        ') }}
